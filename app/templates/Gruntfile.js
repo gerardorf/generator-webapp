@@ -439,7 +439,27 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    browserSync: {
+      dev:{
+        bsFiles: {
+          src : [
+            '<%%= config.app %>/{,*/}*.html',
+            '<%%= config.app %>/styles/{,*/}*.css',
+            '<%%= config.app %>/images/{,*/}*',
+            '<%%= config.app %>/scripts/{,*/}*.js'
+          ]
+        },
+        options: {
+          server: {
+            baseDir: '<%%= config.app %>'
+          },
+          watchTask: true
+        }
+      }
     }
+
   });
 
 
@@ -457,6 +477,24 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+      'watch'
+    ]);
+  });
+
+  grunt.registerTask('browsersync','start the server and preview your app, --allow-remote for remote access', function (target) {
+    if (grunt.option('allow-remote')) {
+      grunt.config.set('connect.options.hostname', '0.0.0.0');
+    }
+    if (target === 'dist') {
+        return grunt.task.run(['build', 'connect:dist:keepalive']);
+    }
+
+    grunt.task.run([
+      'clean:server',
+      'wiredep',
+      'concurrent:server',
+      'autoprefixer',
+      'browserSync',
       'watch'
     ]);
   });

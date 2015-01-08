@@ -1,10 +1,10 @@
 {
-  "name": "generator-webapp",
-  "version": "0.5.1",
+  "name": "generator-webapp-gerardorf",
+  "version": "0.1.0",
   "description": "Scaffold out a front-end web app",
   "license": "BSD",
-  "repository": "yeoman/generator-webapp",
-  "author": "The Yeoman Team",
+  "repository": "gerardorf/generator-webapp",
+  "author": "gerardorf",
   "main": "app/index.js",
   "engines": {
     "node": ">=0.10.0",
