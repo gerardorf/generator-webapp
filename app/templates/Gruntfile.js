@@ -446,14 +446,14 @@ module.exports = function (grunt) {
         bsFiles: {
           src : [
             '<%%= config.app %>/{,*/}*.html',
-            '<%%= config.app %>/styles/{,*/}*.css',
+            '.tmp/styles/{,*/}*.css',
             '<%%= config.app %>/images/{,*/}*',
             '<%%= config.app %>/scripts/{,*/}*.js'
           ]
         },
         options: {
           server: {
-            baseDir: '<%%= config.app %>'
+            baseDir: ['<%= config.app %>', '.tmp']
           },
           watchTask: true
         }
